@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import router from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ const MongoDBURI=process.env.MONGODB_URI;
 //Parsing
 app.use(express.json());
 app.use(cookieParser());
+
+app.use('/api',router)
 
 
 //MongoDB Connection

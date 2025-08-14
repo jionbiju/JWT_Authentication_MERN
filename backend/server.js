@@ -15,7 +15,8 @@ const MongoDBURI=process.env.MONGODB_URI;
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api',router)
+//Middleware
+app.use('/ap/users',router);
 
 
 //MongoDB Connection

@@ -49,7 +49,7 @@ export const createUser = async (req,res) => {
 
 export const loginUser = async (req,res) => {
     try{
-            const {email,password} =req.body;
+    const {email,password} =req.body;
     const user = await userModel.findOne({email});
     if(user && ( await bcrypt.compare(password,user.password))){
         createToken(res,user._id);
@@ -79,7 +79,7 @@ export const logoutUser = async (req,res) => {
 
 export const userProfile = async (req,res) => {
     try {
-        const user = await userModel.findOne({_id:req._id});
+        const user = await userModel.findById(req.user._id);
         if(user){
             return res.status(200).json({
                 _id:user._id,

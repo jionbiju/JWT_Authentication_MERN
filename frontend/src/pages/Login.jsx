@@ -11,13 +11,14 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const {setUser} = useContext(userContext);
+  const {setUser,setIsLoggedIn} = useContext(userContext);
 
   const  handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const data = await loginUser({email,password});
       setUser({id:data.id});
+      setIsLoggedIn(true);
       navigate('/profile');
     } catch (error) {
       toast.error("Invalid Credentials");

@@ -72,14 +72,15 @@ export const loginUser = async (req,res) => {
 export const logoutUser = async (req,res) => {
     res.cookie("jwt","",{
         httpOnly:true,
-        expires:Date(0)
+        expires:new Date(0)
     })
     return res.status(200).json({message:"Logged Out Successfully"})
 }
 
 export const userProfile = async (req,res) => {
     try {
-        const user = await userModel.findById(req.user._id);
+        const {id} = req.params;
+        const user = await userModel.findById(id);
         if(user){
             return res.status(200).json({
                 _id:user._id,

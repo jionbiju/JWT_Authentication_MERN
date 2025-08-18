@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { userContext } from "../Context/userContext";
 import Navbar from "../Components/Navbar";
 import { getUserById } from "../api/userService";
-import { toast } from "react-toastify";
+
 
 const Profile = () => {
   const { user } = useContext(userContext);
@@ -13,7 +13,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const data = await getUserById();
+        const data = await getUserById(user.id);
         setEmail(data.email);
         setUsername(data.username);
         setId(data._id);
@@ -25,18 +25,7 @@ const Profile = () => {
 
   },[])
 
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <Navbar />
-        <div className="flex justify-center items-center h-[80vh]">
-          <h2 className="text-xl font-semibold text-gray-300">
-            Please log in to view your profile.
-          </h2>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">

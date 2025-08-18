@@ -25,15 +25,24 @@ const loginUser = async (userData) => {
     }
 }
 
-export const getUserById = async () => {
+export const getUserById = async (id) => {
   try {
-    const response = await axiosInstance.get('/profile');
+    const response = await axiosInstance.get(`/profile/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching user:", error);
     throw error;
   }
 };
+
+export const logout = async () => {
+    try {
+        const response = await axiosInstance.post('/logout');
+        return response.data;
+    } catch (error) {
+        console.log("Error in logout:",error);
+    }
+}
 
 
 export {registerUser,loginUser};
